@@ -49,8 +49,7 @@ class FeatureValuesTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Features', [
-            'foreignKey' => 'feature_id',
-            'joinType' => 'INNER',
+            'foreignKey' => 'feature_id'
         ]);
         $this->belongsToMany('Products', [
             'foreignKey' => 'feature_value_id',

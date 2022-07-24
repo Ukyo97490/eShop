@@ -40,9 +40,10 @@ class Application extends BaseApplication
      * Load all the application configuration and bootstrap logic.
      *
      * @return void
-     */
+     */ 
     public function bootstrap(): void
     {
+        
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
@@ -65,8 +66,7 @@ class Application extends BaseApplication
 
         // Load more plugins here
         $this->addPlugin('Migrations');
-        $this->addPlugin('Migrations');
-        $this->addPlugin('Migrations');
+        $this->addPlugin('Dashboard');
     }
 
     /**

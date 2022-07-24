@@ -48,8 +48,7 @@ class ImagesTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Products', [
-            'foreignKey' => 'product_id',
-            'joinType' => 'INNER',
+            'foreignKey' => 'product_id'
         ]);
     }
 

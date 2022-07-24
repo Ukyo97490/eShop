@@ -45,12 +45,10 @@ class FeatureValuesProductsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('FeatureValues', [
-            'foreignKey' => 'feature_value_id',
-            'joinType' => 'INNER',
+            'foreignKey' => 'feature_value_id'
         ]);
         $this->belongsTo('Products', [
-            'foreignKey' => 'product_id',
-            'joinType' => 'INNER',
+            'foreignKey' => 'product_id'
         ]);
     }
 
