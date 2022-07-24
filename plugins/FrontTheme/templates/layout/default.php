@@ -8,7 +8,7 @@
 	<meta name="description" content="Site de vente en ligne de matériel informatique...">
 	<meta name="keywords" content="">
 	<meta charset="UTF-8">
-    <title>Karma Shop</title>
+    <title>Ma boutique</title>
 	<!--CSS-->
     <?= $this->Html->css([
         'FrontTheme./css/linearicons',
