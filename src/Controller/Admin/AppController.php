@@ -40,6 +40,8 @@ class AppController extends BaseController
     public function initialize(): void
     {
         parent::initialize();
+
+        $this->loadComponent('Authentication.Authentication');
     }
 
     public function beforeRender(EventInterface $event)

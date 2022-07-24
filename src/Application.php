@@ -16,17 +16,21 @@ declare(strict_types=1);
  */
 namespace App;
 
+namespace App;
+
 use Cake\Core\Configure;
-use Cake\Core\ContainerInterface;
-use Cake\Datasource\FactoryLocator;
-use Cake\Error\Middleware\ErrorHandlerMiddleware;
+use Cake\Routing\Router;
 use Cake\Http\BaseApplication;
-use Cake\Http\Middleware\BodyParserMiddleware;
-use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Http\MiddlewareQueue;
-use Cake\ORM\Locator\TableLocator;
+use Authentication\AuthenticationService;
 use Cake\Routing\Middleware\AssetMiddleware;
+use Psr\Http\Message\ServerRequestInterface;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use Cake\Core\Exception\MissingPluginException;
+use Cake\Error\Middleware\ErrorHandlerMiddleware;
+use Authentication\AuthenticationServiceInterface;
+use Authentication\Middleware\AuthenticationMiddleware;
+use Authentication\AuthenticationServiceProviderInterface;
 
 /**
  * Application setup class.
@@ -35,25 +39,22 @@ use Cake\Routing\Middleware\RoutingMiddleware;
  * want to use in your application.
  */
 class Application extends BaseApplication
+    implements AuthenticationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
      *
      * @return void
-     */ 
+     */
     public function bootstrap(): void
     {
         $this->addPlugin('Migrations');
+
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
         if (PHP_SAPI === 'cli') {
             $this->bootstrapCli();
-        } else {
-            FactoryLocator::add(
-                'Table',
-                (new TableLocator())->allowFallbackClass(false)
-            );
         }
 
         /*
@@ -69,7 +70,7 @@ class Application extends BaseApplication
         $this->addPlugin('FrontTheme');
     }
 
-    /**
+   /**
      * Setup the middleware queue your application will use.
      *
      * @param \Cake\Http\MiddlewareQueue $middlewareQueue The middleware queue to setup.
@@ -94,34 +95,13 @@ class Application extends BaseApplication
             // using it's second constructor argument:
             // `new RoutingMiddleware($this, '_cake_routes_')`
             ->add(new RoutingMiddleware($this))
-
-            // Parse various types of encoded request bodies so that they are
-            // available as array through $request->getData()
-            // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware
-            ->add(new BodyParserMiddleware())
-
-            // Cross Site Request Forgery (CSRF) Protection Middleware
-            // https://book.cakephp.org/4/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
-            ->add(new CsrfProtectionMiddleware([
-                'httponly' => true,
-            ]));
+            ->add(new AuthenticationMiddleware($this));
 
         return $middlewareQueue;
     }
 
     /**
-     * Register application container services.
-     *
-     * @param \Cake\Core\ContainerInterface $container The Container to update.
-     * @return void
-     * @link https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
-     */
-    public function services(ContainerInterface $container): void
-    {
-    }
-
-    /**
-     * Bootstrapping for CLI application.
+     * Bootrapping for CLI application.
      *
      * That is when running commands.
      *
@@ -129,11 +109,41 @@ class Application extends BaseApplication
      */
     protected function bootstrapCli(): void
     {
-        $this->addOptionalPlugin('Cake/Repl');
-        $this->addOptionalPlugin('Bake');
+        try {
+            $this->addPlugin('Bake');
+        } catch (MissingPluginException $e) {
+            // Do not halt if the plugin is missing
+        }
 
         $this->addPlugin('Migrations');
 
         // Load more plugins here
+    }
+
+    public function getAuthenticationService(ServerRequestInterface $request) : AuthenticationServiceInterface
+    {
+        $authenticationService = new AuthenticationService([
+            'unauthenticatedRedirect' => Router::url('/admin/users/login'),
+            'queryParam' => 'redirect'
+        ]);
+
+        $authenticationService->loadIdentifier('Authentication.Password', [
+            'fields' => [
+                'username' => 'username',
+                'password' => 'password'
+            ]
+        ]);
+
+        $authenticationService->loadAuthenticator('Authentication.Session');
+
+        $authenticationService->loadAuthenticator('Authentication.Form', [
+            'fields' => [
+                'username' => 'username',
+                'password' => 'password'
+            ],
+            'loginUrl' => Router::url('/admin/users/login')
+        ]);
+
+        return $authenticationService;
     }
 }
