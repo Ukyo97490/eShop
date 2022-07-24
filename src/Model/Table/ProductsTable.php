@@ -50,8 +50,7 @@ class ProductsTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Categories', [
-            'foreignKey' => 'category_id',
-            'joinType' => 'INNER',
+            'foreignKey' => 'category_id'
         ]);
         $this->hasMany('Images', [
             'foreignKey' => 'product_id',
