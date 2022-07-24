@@ -49,8 +49,8 @@ return [
     'App' => [
         'namespace' => 'App',
         'encoding' => env('APP_ENCODING', 'UTF-8'),
-        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_US'),
-        'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'UTC'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'fr_FR'),
+        'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'Asia/Baku'),
         'base' => false,
         'dir' => 'src',
         'webroot' => 'webroot',
@@ -75,7 +75,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT'),
+        'salt' => env('SECURITY_SALT','45037fac79e77810eaa1ffb6cc5175bfe269b6855d5975e0fef2128a17ae0dd8'),
     ],
 
     /*
