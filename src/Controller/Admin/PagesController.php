@@ -15,7 +15,7 @@ declare(strict_types=1);
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
 namespace App\Controller\Admin;
- 
+
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
@@ -33,6 +33,6 @@ class PagesController extends AppController
 {
     public function index()
     {
-        
+        # code...
     }
 }

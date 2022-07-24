@@ -43,7 +43,7 @@ class Application extends BaseApplication
      */ 
     public function bootstrap(): void
     {
-        
+        $this->addPlugin('Migrations');
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
@@ -65,8 +65,8 @@ class Application extends BaseApplication
         }
 
         // Load more plugins here
-        $this->addPlugin('Migrations');
         $this->addPlugin('Dashboard');
+        $this->addPlugin('FrontTheme');
     }
 
     /**

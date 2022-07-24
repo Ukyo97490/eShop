@@ -26,6 +26,7 @@ use Cake\Routing\RouteBuilder;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
 
+
 /*
  * The default class to use for all routes
  *
@@ -56,7 +57,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
      * Apply a middleware to the current route scope.
      * Requires middleware to be registered through `Application::routes()` with `registerMiddleware()`
      */
-    $builder->applyMiddleware('csrf');
+    // $builder->applyMiddleware('csrf');
 
     /*
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -65,6 +66,10 @@ $routes->scope('/', function (RouteBuilder $builder) {
      */
     $builder->connect('/', ['controller' => 'Pages', 'action' => 'index']);
 
+    /*
+    *...and connect the rest of 'Pages' controller's URLs.
+    */
+    $builder->connect('/pages/*',['controller'=>'Pages','action' =>'display']);
     /*
      * Connect catchall routes for all controllers.
      *
