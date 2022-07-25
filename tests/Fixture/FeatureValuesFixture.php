@@ -20,7 +20,7 @@ class FeatureValuesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'nom' => 'Lorem ipsum dolor sit amet',
+                'name' => 'Lorem ipsum dolor sit amet',
                 'feature_id' => 1,
                 'created' => '2022-07-24 12:35:24',
                 'modified' => '2022-07-24 12:35:24',

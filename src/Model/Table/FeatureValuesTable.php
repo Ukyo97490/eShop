@@ -67,10 +67,10 @@ class FeatureValuesTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->scalar('nom')
-            ->maxLength('nom', 100)
-            ->requirePresence('nom', 'create')
-            ->notEmptyString('nom');
+            ->scalar('name')
+            ->maxLength('name', 100)
+            ->requirePresence('name', 'create')
+            ->notEmptyString('name');
 
         $validator
             ->integer('feature_id')

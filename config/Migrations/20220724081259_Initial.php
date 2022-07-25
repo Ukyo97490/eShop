@@ -38,7 +38,7 @@ class Initial extends AbstractMigration
             ->create();
 
         $this->table('feature_values')
-            ->addColumn('nom', 'string', [
+            ->addColumn('name', 'string', [
                 'default' => null,
                 'limit' => 100,
                 'null' => false,

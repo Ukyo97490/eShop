@@ -40,6 +40,7 @@
                     <td class="align-middle"><?= $feature->name ?></td>
                     <td class="align-middle"><?= $feature->created ?></td>
                     <td class="text-right">
+                    <?= $this->Html->link('<i class="fas fa-list"></i>', ['controller' => 'Feature_values','action' =>'index', $feature->id], ['class' => 'btn btn-primary', 'escape' => false]) ?>                
                     <?= $this->Html->link('<i class="fas fa-edit"></i>', ['action' => 'edit', $feature->id], ['class' => 'btn btn-warning', 'escape' => false]) ?>                
                     <?= $this->Html->link('<i class="fas fa-trash"></i>',['action'=>'delete',$feature->id],['class'=>'btn btn-danger', 'escape'=>false, 'confirm'=>'Êtes vous sûr de vouloir supprimer cette catéristique ? ']) ?>
                 <!-- Le escape=>false permet de dire a CakePhP que l'image font awesome est du HTML -->

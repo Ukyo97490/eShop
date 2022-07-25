@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * FeatureValue Entity
  *
  * @property int $id
- * @property string $nom
+ * @property string $name
  * @property int $feature_id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
@@ -30,7 +30,7 @@ class FeatureValue extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'nom' => true,
+        'name' => true,
         'feature_id' => true,
         'created' => true,
         'modified' => true,
