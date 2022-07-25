@@ -13,6 +13,18 @@ use App\Controller\Admin\AppController;
  */
 class CategoriesController extends AppController
 {
+
+
+     public $paginate = [
+        'limit' => 2,
+    ];
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->loadComponent('Paginator');
+    }
+
     /**
      * Index method
      *
