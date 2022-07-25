@@ -18,7 +18,7 @@
 
     <?= $this->Html->link('<i class="fas fa-list"></i> Catégories', ['controller' => 'Categories', 'action' => 'index'], ['class' => 'nav-link', 'escape' => false]) ?>
 
-    <?= $this->Html->link('<i class="fas fa-shopping-cart"></i> Produits', ['controller' => 'Produits', 'action' => 'index'], ['class' => 'nav-link', 'escape' => false]) ?>
+    <?= $this->Html->link('<i class="fas fa-shopping-cart"></i> Produits', ['controller' => 'Products', 'action' => 'index'], ['class' => 'nav-link', 'escape' => false]) ?>
 
     <?= $this->Html->link('<i class="fas fa-cogs"></i> Caractéristiques', ['controller' => 'Features', 'action' => 'index'], ['class' => 'nav-link', 'escape' => false]) ?>
 
