@@ -16,7 +16,7 @@ class CategoriesController extends AppController
 
 
      public $paginate = [
-        'limit' => 2,
+        'limit' =>5,
     ];
 
     public function initialize(): void
