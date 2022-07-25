@@ -78,12 +78,14 @@ class CategoriesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
         $category = $this->Categories->get($id);
-        if ($this->Categories->delete($category)) {
-            $this->Flash->success(__('The category has been deleted.'));
+
+        $category = $this->Categories->patchEntity($category, ['deleted' => date('Y-m-d H:i:s')]);
+
+        if ($this->Categories->save($category)) {
+            $this->Flash->success('Catégorie supprimée avec succès.');
         } else {
-            $this->Flash->error(__('The category could not be deleted. Please, try again.'));
+            $this->Flash->error('Catégorie non supprimée.');
         }
 
         return $this->redirect(['action' => 'index']);
