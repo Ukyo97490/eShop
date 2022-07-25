@@ -16,6 +16,14 @@
     <h6 class="m-0 font-weight-bold text-primary">Liste des catégories</h6>
   </div>
   <div class="card-body">
+  <?php // S'il n'y a pas de tableau à afficher
+            if (!$categories->count()) : ?>
+                <div class="alert alert-info">
+                    Aucune catégorie à afficher
+                </div>
+
+            <?php else : ?>
+                
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
@@ -36,13 +44,23 @@
                     <?= $this->Html->link('<i class="fas fa-edit"></i>', ['action' => 'edit', $categorie->id], ['class' => 'btn btn-warning', 'escape' => false]) ?>                
                     <?= $this->Html->link('<i class="fas fa-trash"></i>',['action'=>'delete',$categorie->id],['class'=>'btn btn-danger', 'escape'=>false, 'confirm'=>'Êtes vous sûr de vouloir supprimer cette catégorie ? ']) ?>
                 <!-- Le escape=>false permet de dire a CakePhP que l'image font awesome est du HTML -->
-            </td>
-                     </tr>
-           <?php endforeach;?>
-        </tbody>
-      </table>
+                </td>
+                                </tr>
+                            <?php
+                            endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <nav class="d-inline-block">
+                    <ul class="pagination">
+                        <?= $this->Paginator->prev('< ') ?>
+                        <?= $this->Paginator->numbers() ?>
+                        <?= $this->Paginator->next(' >') ?>
+                    </ul>
+                </nav>
+            <?php
+            endif; ?>
+        </div>
     </div>
-    
-  </div>
-</div>
 </div>
