@@ -34,7 +34,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
             <?php //Boucle les catégories
             foreach ($categories as $categorie) : ?>
                 <tr>

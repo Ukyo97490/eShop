@@ -34,13 +34,15 @@ class CategoriesController extends AppController
     {
         $category = $this->Categories->newEmptyEntity();
         if ($this->request->is('post')) {
+
             $category = $this->Categories->patchEntity($category, $this->request->getData());
+
             if ($this->Categories->save($category)) {
-                $this->Flash->success(__('The category has been saved.'));
+                $this->Flash->success('Catégorie ajoutée avec succès. ');
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The category could not be saved. Please, try again.'));
+            $this->Flash->error('Catégorie non ajoutée. ');
         }
         $this->set(compact('category'));
     }
@@ -54,9 +56,8 @@ class CategoriesController extends AppController
      */
     public function edit($id = null)
     {
-        $category = $this->Categories->get($id, [
-            'contain' => [],
-        ]);
+        $category = $this->Categories->get($id);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $category = $this->Categories->patchEntity($category, $this->request->getData());
             if ($this->Categories->save($category)) {
