@@ -11,9 +11,10 @@
 <div class="card shadow my-4">
 <?= $this->Form->create($category)?>
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Ajouter une catégorie</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Modifier une catégorie</h6>
   </div>
   <div class="card-body">
+    
       <?= $this->Form->control('name',['class'=>'form-control'])?>
     </div>
     <div class="card-footer">
