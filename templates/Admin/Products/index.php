@@ -28,9 +28,9 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>Nom</th>
-            <th>Date de création</th>
-            <th>Actions</th>
+            <th>Catégorie</th>
+            <th>Produit</th>
+            <th>Prix</th>
           </tr>
         </thead>
         <tbody>
