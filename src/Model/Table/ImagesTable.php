@@ -50,7 +50,14 @@ class ImagesTable extends Table
         $this->belongsTo('Products', [
             'foreignKey' => 'product_id'
         ]);
+        $this->addBehavior('Proffer.Proffer', [
+            'file' => [
+                'root' => WWW_ROOT . 'img',
+                'dir' => 'file_dir'
+            ]
+        ]);
     }
+
 
     /**
      * Default validation rules.
@@ -60,17 +67,6 @@ class ImagesTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
-        $validator
-            ->scalar('file_dir')
-            ->maxLength('file_dir', 255)
-            ->requirePresence('file_dir', 'create')
-            ->notEmptyFile('file_dir');
-
-        $validator
-            ->scalar('file')
-            ->maxLength('file', 255)
-            ->requirePresence('file', 'create')
-            ->notEmptyFile('file');
 
         $validator
             ->scalar('alt')
