@@ -14,7 +14,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-    <?= $this->Html->link('<i class="fas fa-truck"></i> Commandes', ['controller' => 'Commandes', 'action' => 'index'], ['class' => 'nav-link', 'escape' => false]) ?>
+    <?= $this->Html->link('<i class="fas fa-truck"></i> Commandes', ['controller' => 'Orders', 'action' => 'index'], ['class' => 'nav-link', 'escape' => false]) ?>
 
     <?= $this->Html->link('<i class="fas fa-list"></i> Catégories', ['controller' => 'Categories', 'action' => 'index'], ['class' => 'nav-link', 'escape' => false]) ?>
 
