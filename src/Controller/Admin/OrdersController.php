@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\AppController;
+use App\Model\Entity\OrderList;
 
 /**
  * Orders Controller
@@ -36,4 +37,16 @@ class OrdersController extends AppController
 
         $this->set(compact('orders'));
     }
+
+ /**
+     * View method
+     */
+    public function view($idOrder)
+    {
+        $order = $this->Orders->get($idOrder, ['contain' => ['OrderLists.Products']]);
+
+        $this->set(compact('order'));
+    }
+
+
 }
