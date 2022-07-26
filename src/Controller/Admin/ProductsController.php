@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
+use Cake\Utility\Hash;
 use App\Controller\Admin\AppController;
 
 /**
@@ -13,10 +14,8 @@ use App\Controller\Admin\AppController;
  */
 class ProductsController extends AppController
 {
-
-
-     public $paginate = [
-        'limit' =>5,
+    public $paginate = [
+        'limit' => 5,
     ];
 
     public function initialize(): void
@@ -34,16 +33,9 @@ class ProductsController extends AppController
     {
         $products = $this->paginate(
             $this->Products->find()
-            ->contain(['Categories'])
-            ->where(['Products.deleted IS NULL'])
+                ->contain(['Categories'])
+                ->where(['Products.deleted IS NULL'])
         );
-
-// Récupération des catégories 
-// $this->loadModel('Categories');
-$categories=$this->Products->Categories->find('list',['keyfield'=>'id','valuefield'=>'name'])
-->where(['deleted IS NULL'])
-->toArray();
-
 
         $this->set(compact('products'));
     }
@@ -56,22 +48,24 @@ $categories=$this->Products->Categories->find('list',['keyfield'=>'id','valuefie
     public function add()
     {
         $product = $this->Products->newEmptyEntity();
+
         if ($this->request->is('post')) {
 
             $product = $this->Products->patchEntity($product, $this->request->getData());
 
             if ($this->Products->save($product)) {
-                $this->Flash->success('Produit ajouté avec succès. ');
+                $this->Flash->success('Produit sauvegardé avec succès.');
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error('Produit non ajouté. ');
+
+            $this->Flash->error('Produit non sauvegardé.');
         }
 
-// Récupération de la liste des catégories
-$categories = $this->Products->Categories->find('list', ['keyField' => 'id', 'valueField' => 'name'])
-->where(['deleted IS NULL'])
-->toArray();
+        // Récupération de la liste des catégories
+        $categories = $this->Products->Categories->find('list', ['keyField' => 'id', 'valueField' => 'name'])
+            ->where(['deleted IS NULL'])
+            ->toArray();
 
         $this->set(compact('product', 'categories'));
     }
@@ -85,24 +79,53 @@ $categories = $this->Products->Categories->find('list', ['keyField' => 'id', 'va
      */
     public function edit($id = null)
     {
-        $product = $this->Products->get($id);
+        $product = $this->Products->get($id, ['contain' => ['FeatureValues']]);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $product = $this->Products->patchEntity($product, $this->request->getData());
+
             if ($this->Products->save($product)) {
                 $this->Flash->success('Produit sauvegardé avec succès.');
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error('Produit non sauvegardé. ');
+            
+            $this->Flash->error('Produit non sauvegardé.');
         }
-        $this->set(compact('product'));
+
+        // Récupération de la liste des catégories
+        $categories = $this->Products->Categories->find('list', ['keyField' => 'id', 'valueField' => 'name'])
+            ->where(['deleted IS NULL'])
+            ->toArray();
+
+        // Récupération des caractéristiques
+        $this->loadModel('Features');
+        $features = $this->Features->find()
+            ->contain([
+                'FeatureValues' => [
+                    'conditions' => [
+                        'deleted IS NULL'
+                    ]
+                ]
+            ])
+            ->where(['deleted IS NULL'])
+            ->toArray();
+
+        // Parcours de toutes les caractéristiques
+        $featureValues = [];
+        foreach ($features as $feature) {
+            foreach ($feature->feature_values as $feature_value) {
+                $featureValues[$feature_value->id] = $feature_value->name;
+            }
+        }
+        
+        $this->set(compact('product', 'categories', 'features', 'featureValues'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Product id.
+     * @param string|null $id Produit id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -110,9 +133,9 @@ $categories = $this->Products->Categories->find('list', ['keyField' => 'id', 'va
     {
         $product = $this->Products->get($id);
 
-        $product = $this->Products->patchEntity($product, ['deleted' => date('Y-m-d H:i:s')]);
+        $product = $this->Produits->patchEntity($product, ['deleted' => date('Y-m-d H:i:s')]);
 
-        if ($this->Products->save($product)) {
+        if ($this->Produits->save($product)) {
             $this->Flash->success('Produit supprimé avec succès.');
         } else {
             $this->Flash->error('Produit non supprimé.');
