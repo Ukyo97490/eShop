@@ -133,9 +133,9 @@ class ProductsController extends AppController
     {
         $product = $this->Products->get($id);
 
-        $product = $this->Produits->patchEntity($product, ['deleted' => date('Y-m-d H:i:s')]);
+        $product = $this->Products->patchEntity($product, ['deleted' => date('Y-m-d H:i:s')]);
 
-        if ($this->Produits->save($product)) {
+        if ($this->Products->save($product)) {
             $this->Flash->success('Produit supprimé avec succès.');
         } else {
             $this->Flash->error('Produit non supprimé.');
