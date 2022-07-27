@@ -19,7 +19,7 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="img/banner/banner-img.png" alt="">
+                                    <?=$this->Html->image('banner/banner-img.png',['class'=>'img-fluid']) ?>
 								</div>
 							</div>
 						</div>
@@ -38,7 +38,8 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="img/banner/banner-img.png" alt="">
+                                <?=$this->Html->image('banner/banner-img.png',['class'=>'img-fluid']) ?>
+
 								</div>
 							</div>
 						</div>
@@ -57,7 +58,7 @@
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<img src="img/features/f-icon1.png" alt="">
+                        <?=$this->Html->image('features/f-icon1.png') ?>
 						</div>
 						<h6>Free Delivery</h6>
 						<p>Free Shipping on all order</p>
@@ -67,8 +68,8 @@
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<img src="img/features/f-icon2.png" alt="">
-						</div>
+                        <?=$this->Html->image('features/f-icon2.png') ?>						
+                    </div>
 						<h6>Return Policy</h6>
 						<p>Free Shipping on all order</p>
 					</div>
@@ -77,7 +78,7 @@
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<img src="img/features/f-icon3.png" alt="">
+                        <?=$this->Html->image('features/f-icon3.png') ?>
 						</div>
 						<h6>24/7 Support</h6>
 						<p>Free Shipping on all order</p>
@@ -87,7 +88,7 @@
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="single-features">
 						<div class="f-icon">
-							<img src="img/features/f-icon4.png" alt="">
+                        <?=$this->Html->image('features/f-icon4.png') ?>
 						</div>
 						<h6>Secure Payment</h6>
 						<p>Free Shipping on all order</p>
@@ -102,19 +103,19 @@
 		<div class="container">
 			<div class="row">
 				<a class="col single-img" href="#">
-					<img class="img-fluid d-block mx-auto" src="img/brand/1.png" alt="">
+                    <?=$this->Html->image('brand/1.png',['class'=>'img-fluid d-block mx-auto']) ?>
 				</a>
 				<a class="col single-img" href="#">
-					<img class="img-fluid d-block mx-auto" src="img/brand/2.png" alt="">
+                <?=$this->Html->image('brand/2.png',['class'=>'img-fluid d-block mx-auto']) ?>
 				</a>
 				<a class="col single-img" href="#">
-					<img class="img-fluid d-block mx-auto" src="img/brand/3.png" alt="">
+                <?=$this->Html->image('brand/3.png',['class'=>'img-fluid d-block mx-auto']) ?>
 				</a>
 				<a class="col single-img" href="#">
-					<img class="img-fluid d-block mx-auto" src="img/brand/4.png" alt="">
+                <?=$this->Html->image('brand/4.png',['class'=>'img-fluid d-block mx-auto']) ?>
 				</a>
 				<a class="col single-img" href="#">
-					<img class="img-fluid d-block mx-auto" src="img/brand/5.png" alt="">
+                <?=$this->Html->image('brand/5.png',['class'=>'img-fluid d-block mx-auto']) ?>
 				</a>
 			</div>
 		</div>

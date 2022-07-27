@@ -29,8 +29,15 @@ use Cake\View\Exception\MissingTemplateException;
  *
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
  */
-class PagesController extends AppController
+
+  class PagesController extends AppController
 {
+    public function beforeFilter($event)
+    {
+        parent::beforeFilter($event);
+// (On autorise la page accueil aux visiteurs)
+        $this->Authentication->addUnauthenticatedActions(['index']);
+    }
   /**
    * Accueil
    */
