@@ -22,6 +22,8 @@
         'FrontTheme./css/ion.rangeSlider.skinFlat',
         'FrontTheme./css/magnific-popup',
         'FrontTheme./css/main',
+        'FrontTheme./css/custom'
+
     ]);?>
 
 </head>

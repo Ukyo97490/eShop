@@ -28,20 +28,20 @@ foreach ($categories as $idCategorie=> $categorie) { ?>
                     </ul>
                 </div>
                 
-                <?=$this->Form->create(null) ?>
+                <?=$this->Form->create(null,['type'=>'get','class'=>'submitOnChange']) ?>
 
 
 				<div class="sidebar-filter mt-50">
 					<div class="top-filter-head">Filtres</div>
 					<div class="common-filter border-0 pb-5">
 						<div class="head">Marque</div>
-                        <?=$this->Form->select('filtre_brand',$brands,['label'=>false])?>
+                        <?=$this->Form->select('filtre_brand',$brands,['label'=>false, 'empty'=>'Choisir une marque'])?>
 						
 					</div>
                     <hr/>
 					<div class="common-filter border-0 ">
 						<div class="head">Processeur</div>
-                        <?=$this->Form->select('filtre_processor',$processors,['label'=>false])?>
+                        <?=$this->Form->select('filtre_processor',$processors,['label'=>false, 'empty'=>'Choisir un processeur'])?>
 
 					</div>
 				</div>
