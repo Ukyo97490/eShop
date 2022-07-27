@@ -27,8 +27,33 @@ class ProductsController extends AppController
 $categorie=$this->Products->Categories->get($categorieId);
         // Liste des Produits 
         $products =$this->Products->find()->where(['category_id'=>$categorieId]);
-        $this->set(compact('categorie'));
+
+//Récup des Marques pour les filtres
+$this->loadModel('FeatureValues');
+$brands=$this->FeatureValues->find(
+ 'list',[
+'keyfield'=>'id',
+'valueField'=>'name'
+])
+->where(['feature_id'=>FEATURE_BRAND_ID ,'deleted IS NULL']);
+// FEATURE_BRAND_ID est une constante défini dans le fichier config>bootstrap php ou le numéro correspond au feature id de la BDD
+
+//Récup des Processeurs pour les filtres
+$processors=$this->FeatureValues->find(
+    'list',[
+   'keyfield'=>'id',
+   'valueField'=>'name'
+   ])
+//    ->where(['feature_id'=>14,'deleted IS NULL']);
+->where(['feature_id'=>FEATURE_PROCESSOR_ID,'deleted IS NULL']);
+   
+
+    
+        $this->set(compact('categorie','brands','processors'));
         $this->set(['products'=>$this->paginate($this->Products)]);
+
+
+
 
 
     }
