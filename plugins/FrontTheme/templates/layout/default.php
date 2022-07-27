@@ -28,8 +28,6 @@
 
 <body>
 
- <!-- Contenu -->
- <?= $this->fetch('content'); ?>
         
         <!-- Menu -->
         <?= $this->Element('FrontTheme.layout/menu'); ?>
