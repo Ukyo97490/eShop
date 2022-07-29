@@ -78,12 +78,12 @@ $this->set(compact('categorie','brands','processors' ));
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($id)
     {
         $product = $this->Products->get($id, [
-            'contain' => ['Categories', 'FeatureValues', 'Images', 'OrderLists'],
+            'contain' => ['Categories', 'FeatureValues.Features', 'Images'],
         ]);
 
-        $this->set(compact('product'));
+        $this->set('product',$product);
     }
 }
