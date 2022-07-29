@@ -22,35 +22,23 @@
         'FrontTheme./css/ion.rangeSlider.skinFlat',
         'FrontTheme./css/magnific-popup',
         'FrontTheme./css/main',
-        'FrontTheme./css/custom'
-
     ]);?>
 
 </head>
 
 <body>
 
-        
-        <!-- Menu -->
-        <?= $this->Element('FrontTheme.layout/menu'); ?>
+ <!-- Menu -->
+<?= $this->Element('FrontTheme.layout/menu'); ?>
 
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
+<!-- Flash -->
+<?= $this->Flash->render() ?>
 
-                <div class="container-fluid">
+<!-- Contenu -->
+<?= $this->fetch('content'); ?>
 
-                    <!-- Flash -->
-                    <?= $this->Flash->render() ?>
-
-                    <!-- Contenu -->
-                    <?= $this->fetch('content'); ?>
-
-                </div>
-
-            </div>
-
-            <!-- Footer -->
-            <?= $this->Element('FrontTheme.layout/footer'); ?>
+<!-- Footer -->
+<?= $this->Element('FrontTheme.layout/footer'); ?>
 
 
 
@@ -70,6 +58,7 @@
         'https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE',
         'FrontTheme./js/gmaps.min',
         'FrontTheme./js/main',
+        'FrontTheme./js/custom'
     ]); ?>
 </body>
 </html>
