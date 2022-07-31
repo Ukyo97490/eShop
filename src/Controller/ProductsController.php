@@ -15,7 +15,7 @@ class ProductsController extends AppController
     {
         parent::beforeFilter($event);
 // (On autorise la page aux visiteurs)
-        $this->Authentication->addUnauthenticatedActions(['index','view']);
+        $this->Authentication->addUnauthenticatedActions(['index','view','addCart']);
     }
     /**
      * Index method
@@ -86,4 +86,18 @@ $this->set(compact('categorie','brands','processors' ));
 
         $this->set('product',$product);
     }
+    
+    public function addCart()
+    {
+        // On met dans la variable panier le panier qu'il y a en session
+        $cart=$this->getRequest()->getSession()->read('cart');  
+        // On ajoute le produit et la quantité à la variable panier
+        $cart[]=$this->getRequest()->getData();
+        // On met à jour la session panier
+        $this->getRequest()->getSession()->write('cart',$cart);
+
+        return $this->redirect(['controller'=>'Commandes','action'=>'checkout']);
+
+  }
+
 }

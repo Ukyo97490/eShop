@@ -49,13 +49,14 @@ foreach ($categories as $idCategorie=> $categorie) { ?>
 			</div>
 			<div class="col-xl-9 col-lg-8 col-md-7">
 				<!-- Start Best Seller -->
-				<section class="lattest-product-area pb-40 category-list">
+				<section class="pb-40 category-list">
 					<div class="row">
+						
 						<?php // Liste des produits
 						foreach ($products as $product) { ?>
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
-								<img class="img-fluid" src="img/product/p1.jpg" alt="">
+								
 
 								<?= $this->Html->image('images/file/' . $product->images[0]->file_dir . '/' . $product->images[0]->file) ?>
 								<div class="product-details">

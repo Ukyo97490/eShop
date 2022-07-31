@@ -27,7 +27,7 @@
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-                        <?= $this->Form->create()?>
+                        <?= $this->Form->create(null,['url'=>['controller'=>'Products','action'=>'addCart']])?>
 						<h3 class="font-weight-bold"><?= $product->name?></h3>
 						<h2><?= $product->price?> €</h2>
 						<ul class="list">
@@ -39,9 +39,9 @@
                            <?php }?>
 						</ul>
 						<p><?= $product->description?></p>
-						<div>
-							<label>Quantité:</label></br>
-                            <?=$this->Form->select('quantity',[1=>1,2=>2,3=>3,4=>4,5=>5])?>
+						<div class="product_count">
+                            <?= $this->Form->input('product_id',['type'=>'hidden','value'=>$product->id])?>
+                             <?=$this->Form->select('quantite', [1=>1,2=>2,3=>3,4=>4,5=>5])?>  
 						</div>
 						<div class="card_area d-flex align-items-center mb-5">
                             <?= $this->Form->submit('Ajouter au panier', ['class' => 'primary-btn']) ?>
