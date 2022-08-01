@@ -30,7 +30,7 @@ class UsersController extends AppController
         $result = $this->Authentication->getResult();
 
         if ($result->isValid()) {
-            return $this->redirect(['controller' => 'Commandes', 'action' => 'index']);
+            return $this->redirect(['controller' => 'orders', 'action' => 'index']);
         }
 
         if ($this->getRequest()->is('post') && !$result->isValid()) {
