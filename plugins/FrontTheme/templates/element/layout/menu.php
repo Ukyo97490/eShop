@@ -3,7 +3,13 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<a class="navbar-brand logo_h" href="index.html">
-					<?=$this->Html->image('logo-black.png')?>
+					<?php
+     echo $this->Html->link(
+          $this->Html->image('logo-black.png', array('alt' => "Logo")), // Recherche dans le dossier webroot/img
+          array('controller' => 'Pages', 'action' => "index"),
+          array('escape' => false) // Ceci pour indiquer de ne pas échapper les caractères HTML du lien vu qu'ici tu as une image
+     );
+?>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>

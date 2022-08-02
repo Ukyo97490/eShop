@@ -12,9 +12,11 @@
 </div> 
 <div class="card shadow my-4">
  <div class="card-body">
-  <h4><?=$order->fullName?></h4>
+  <h4 class="font-weight-bold"><?=$order->fullName?></h4>
   <p><?=$order->email?>
-  <p><?=$order->adresse?>
+  <p><?=$order->adresse?><br/>
+  <?=$order->adresse2?><br/>
+  <?=$order->zipcode?> <?=$order->town ?>
   <div class="table-responsive mt-5">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
