@@ -96,7 +96,7 @@ $this->set(compact('categorie','brands','processors' ));
         // On met à jour la session panier
         $this->getRequest()->getSession()->write('cart',$cart);
 
-        return $this->redirect(['controller'=>'Commandes','action'=>'checkout']);
+        return $this->redirect(['controller'=>'Orders','action'=>'checkout']);
 
   }
 

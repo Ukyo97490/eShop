@@ -41,7 +41,9 @@
 						<p><?= $product->description?></p>
 						<div class="product_count">
                             <?= $this->Form->input('product_id',['type'=>'hidden','value'=>$product->id])?>
-                             <?=$this->Form->select('quantite', [1=>1,2=>2,3=>3,4=>4,5=>5])?>  
+							<p class="text-right text-danger font-weight-bold">Veuillez nous contacter pour une commande supérieure à 5 articles.</p>
+							<label>Quantité:</label><br/>
+                            <?=$this->Form->select('quantity', [1=>1,2=>2,3=>3,4=>4,5=>5])?>  
 						</div>
 						<div class="card_area d-flex align-items-center mb-5">
                             <?= $this->Form->submit('Ajouter au panier', ['class' => 'primary-btn']) ?>

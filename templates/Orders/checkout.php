@@ -13,11 +13,12 @@
     <!--================Checkout Area =================-->
     <section class="checkout_area section_gap">
         <div class="container">
-        <?= $this->Form->create($order) ?>
+       
             <div class="billing_details">
                 <div class="row">
                     <div class="col-lg-8">
                         <h3>Vos informations</h3>
+                        <?= $this->Form->create($order,['class'=>'row contact_form']) ?>
                         <div class="row contact_form">
                             <div class="col-md-6 form-group">
                                 <label for="prenom">Prénom</label>
@@ -25,16 +26,28 @@
                                 <span class="placeholder" data-placeholder="Prénom"></span>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label for="prenom">Nom</label>
+                                <label for="nom">Nom</label>
                                 <?= $this->Form->input('nom', ['class' => 'form-control']) ?>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label for="prenom">Email</label>
+                                <label for="email">Email</label>
                                 <?= $this->Form->input('email', ['class' => 'form-control']) ?>
                             </div>
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-6 form-group">
                                 <label for="adresse">Adresse</label>
                                 <?= $this->Form->input('adresse', ['class' => 'form-control']) ?>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="adresse2">Complément d'adresse</label>
+                                <?= $this->Form->input('adresse2', ['class' => 'form-control']) ?>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="zipcode">Code Postal</label>
+                                <?= $this->Form->input('zipcode', ['class' => 'form-control']) ?>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="town">Ville</label>
+                                <?= $this->Form->input('town', ['class' => 'form-control']) ?>
                             </div>
                         </div>
                     </div>
@@ -61,7 +74,7 @@
                             <ul class="list list_2">
                                 <li><a href="#">Total <span><?= $total ?> €</span></a></li>
                             </ul>
-                            <?= $this->Form->submit('Payer', ['class' => 'primary-btn']) ?>
+                            <?= $this->Form->submit('Payer', ['class' => 'primary-btn col-md-12']) ?>
                         </div>
                     </div>
                 </div>
