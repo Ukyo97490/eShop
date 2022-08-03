@@ -15,7 +15,7 @@ class ProductsController extends AppController
     {
         parent::beforeFilter($event);
 // (On autorise la page aux visiteurs)
-        $this->Authentication->addUnauthenticatedActions(['index','view','addCart']);
+        $this->Authentication->addUnauthenticatedActions(['index','view','addCart','deleteCart']);
     }
     /**
      * Index method
@@ -92,12 +92,32 @@ $this->set(compact('categorie','brands','processors' ));
         // On met dans la variable panier le panier qu'il y a en session
         $cart=$this->getRequest()->getSession()->read('cart');  
         // On ajoute le produit et la quantité à la variable panier
-        $cart[]=$this->getRequest()->getData();
+        $quantity=$this->getRequest()->getData('quantity');
+
+// Si on a déjà ce produit dans notre panier, on ajoute la quantité en plus
+if ($this->getRequest()->getSession()->check('cart.' . $this->getRequest()->getData('product_id'))) {
+    $quantity += $this->getRequest()->getSession()->read('cart.' . $this->getRequest()->getData('product_id'));
+}
+
+
+        
+        $cart[$this->getRequest()->getData('product_id')] = $quantity;
+        
         // On met à jour la session panier
         $this->getRequest()->getSession()->write('cart',$cart);
+
+
 
         return $this->redirect(['controller'=>'Orders','action'=>'checkout']);
 
   }
+  public function deleteCart($productId)
+    {
+        // Suppression du produit dans le panier en session
+        $this->getRequest()->getSession()->delete('cart.' . $productId);
 
+        return $this->redirect(['controller' => 'Orders', 'action' => 'checkout']);
+    }
 }
+
+

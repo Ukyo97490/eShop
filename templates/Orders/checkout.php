@@ -37,18 +37,6 @@
                                 <label for="adresse">Adresse</label>
                                 <?= $this->Form->input('adresse', ['class' => 'form-control']) ?>
                             </div>
-                            <div class="col-md-6 form-group">
-                                <label for="adresse2">Complément d'adresse</label>
-                                <?= $this->Form->input('adresse2', ['class' => 'form-control']) ?>
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <label for="zipcode">Code Postal</label>
-                                <?= $this->Form->input('zipcode', ['class' => 'form-control']) ?>
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <label for="town">Ville</label>
-                                <?= $this->Form->input('town', ['class' => 'form-control']) ?>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
